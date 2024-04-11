@@ -94,6 +94,11 @@ client/.env
 .nuxt
 dist
 
+./server/.env
+server/.env
+
+server/node_modules
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
