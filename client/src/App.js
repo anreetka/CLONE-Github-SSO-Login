@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
 
-CLIENT_ID = process.env.USER_CLIENT_ID;
+
+const CLIENT_ID = process.env.MY_CLIENT_ID;
 
 function App() {
+
+  function loginWithGithub(){
+    window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src='https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png' className='github-img' alt='github-logo' /><br/>
+        <p className='begin-p'>To continue, please sign in with your github below:</p>
+        <button className='git-signup'>Sign in with Github (SSO)</button>
       </header>
     </div>
   );

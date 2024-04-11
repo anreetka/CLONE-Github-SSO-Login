@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,6 +22,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: 0px;
+} */
+
+.App-header{
+  background-color: #282c34;
+  margin-top:0px;
+  height: 100vh;
 }
 
 .App-link {
@@ -35,4 +42,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.github-img{
+  margin-top:5%;
+  margin-bottom: 2%;
+  height: 50%;
+  width: 30;
+}
+
+.git-signup{
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: green;
+  box-shadow: none;
+  outline: none;
+  border:none;
+  border-radius: 5px;
+  color: white;
+}
+
+.begin-p{
+  color:white;
 }
