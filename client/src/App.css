@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body{
+  background-color: #333; 
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,17 +17,45 @@
   }
 }
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.get-repos {
+  background-color: #333; 
+  color: rgb(221, 17, 17); 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.2s ease-in-out;
+}
+
+.get-repos:hover {
+  background-color: #444; /* Darker gray on hover */
+}
+
+.repo-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  margin: 0px;
-} */
+  flex-wrap: wrap;
+}
+
+.repo-card {
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f8f8f8;
+}
+
+.no-repo {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
+
+.get-repos{
+  margin-right:50px;
+}
+
 
 .App-header{
   background-color: #282c34;

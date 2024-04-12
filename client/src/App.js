@@ -6,6 +6,7 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 function App() {
   const [userData, setUserData] = useState({});
   const [reRender, setReRender] = useState(false);
+  const [userRepo, setUserRepo] = useState({});
 
   useEffect(()=>{
     const queryString = window.location.search;
@@ -52,6 +53,19 @@ function App() {
     setUserData({});
   }
 
+  async function getUserRepoData(){
+    const username = userData.login;
+    console.log(username);
+    const response = await fetch("http://localhost:4000/getUserRepos?username=" + username,{
+      method: "GET",
+    });
+    console.log(response);
+    const data = await response.json();
+    setUserRepo(data);
+    data.forEach(repo=>console.log(repo.name));
+  }
+
+
   
   function loginWithGithub(){
     window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
@@ -64,10 +78,30 @@ function App() {
         {/* check if the user is logged in or not */}
         {localStorage.getItem("accessToken")?
         <>
-          <h1>Welcome to the Logged Session {userData.name}!</h1>
+          <h1 style={{color: "white", marginTop:'0px', paddingTop:'10px'}}>Welcome to the Logged Session {userData.name}!</h1>
+
+          <button className='get-repos git-signup'
+          onClick={getUserRepoData}
+          >Get My Repos</button>
+
           <button className='git-signup log'
           onClick={handleLogout} 
           >Logout</button>
+
+        <div class="repo-container">
+          {userRepo.length > 0 ? (
+            userRepo.map((repo) => (
+              <div key={repo.id} className="repo-card">
+
+                <h3>{repo.name}</h3>
+                <p>Visibility: {repo.visibility}</p>
+
+              </div>
+            ))
+          ) : (
+            <div className="no-repo">Click on get my repos to fetch repositories.</div>
+          )}
+        </div>
         </>
         :
         <>

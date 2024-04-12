@@ -46,10 +46,16 @@ app.get('/getUserData', async function(req, res){
         headers:{
             "Authorization" : authorizationHeader
         }
-    })
+    });
+    res.json(response.data);
+})
 
-    // const receivedData = await response.json();
-    // console.log(receivedData.data);
+app.get('/getUserRepos', async function(req, res){
+    const receivedUsername = req.query.username;
+    const response = await axios.get('https://api.github.com/users/'+ receivedUsername + "/repos",{
+        "Accept": "application/json"
+    });
+    response.data.forEach(repo=>console.log(repo.name));
     res.json(response.data);
 })
 
