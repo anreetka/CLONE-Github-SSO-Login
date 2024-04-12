@@ -1,8 +1,10 @@
 const express = require('express');
+const axios = require("axios");
 const cors = require('cors');
-const fetch=(...args)=>{
-    import('node-fetch').then(({default: fetch})=>fetch(...args));
-}
+
+// const fetch=(...args)=>{
+//     import('node-fetch').then(({default: fetch})=>fetch(...args));
+// }
 const bodyParser = require('body-parser'); 
 
 require('dotenv').config();
@@ -18,34 +20,37 @@ app.use(bodyParser.json());
 //get token access from the frontend
 app.get('/getTokenAccess', async function(req, res){
     const accessToken = req.query.code;
-    const params  = '?client_id=' + CLIENT_ID + "&client_secret" + CLIENT_SECRET + "&code=" + accessToken;
-    const response = await fetch("https://github.com/login/oauth/access_token" + params, {
-        method: 'POST',
-        headers:{
-            "Accept": "application/json"
-        }
-    }).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        res.json(data);
-    })
+    try{
+        const response = await axios.get("https://github.com/login/oauth/access_token",{
+            params: {
+                client_id : CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                code: accessToken
+            },
+            headers:{
+                "Accept": "application/json",
+                "Accept-Encoding": "application/json"
+            },
+        });
+        res.json(response.data);
+    }catch(error){
+        console.log("Error: ", error);
+        return {error: "Internal Server Error"};
+    }
 });
-
 
 //get user data
 app.get('/getUserData', async function(req, res){
-    req.get("Authorization"); //Bearer ACCESSTOKEN
-
-    const response = await fetch("https://api.github.com/user", {
-        method: "GET",
-        header:{
-            "Authorization" : req.get("Authorization")
+    const authorizationHeader = req.get("Authorization"); //Bearer ACCESSTOKEN
+    const response = await axios.get("https://api.github.com/user", {
+        headers:{
+            "Authorization" : authorizationHeader
         }
-    }).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        res.json(data);
     })
+
+    // const receivedData = await response.json();
+    // console.log(receivedData.data);
+    res.json(response.data);
 })
 
 const port = 4000;
