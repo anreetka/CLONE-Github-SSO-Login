@@ -22,6 +22,7 @@ Before running this application, you need to set up a GitHub OAuth App. Follow t
 
 ```bash
 npm install
+```
 
 ## Configuration
 
@@ -29,7 +30,7 @@ Set the environment variable `REACT_APP_CLIENT_ID` in a `.env` file at the root 
 
 ```plaintext
 REACT_APP_CLIENT_ID=your_github_oauth_client_id
-
+```
 
 ## Running the Application
 
@@ -37,13 +38,13 @@ Run the development server:
 
 ```bash
 npm start
+```
 
-Copy code
 ## Usage
 
 1. Open your browser and navigate to `http://localhost:3000`.
 2. Click on "Sign in with GitHub" to authenticate.
-3. Upon successful authentication, you will be able to see your GitHub repositories.
+3. Upon successful authentication, you will be able to see your GitHub repositories upon clicking on get my repos button.
 
 ## License
 
